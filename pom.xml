@@ -55,8 +55,8 @@
         <jiraComponentId>13455</jiraComponentId>
     </properties>
     <scm>
-        <connection>scm:svn:https://github.com/lutece-platform/lutece-wf-module-workflow-eudonetdirectory</connection>
-        <developerConnection>scm:svn:https://github.com/lutece-platform/lutece-wf-module-workflow-eudonetdirectory</developerConnection>
+        <connection>scm:git:https://github.com/lutece-platform/lutece-wf-module-workflow-eudonetdirectory</connection>
+        <developerConnection>scm:git:https://github.com/lutece-platform/lutece-wf-module-workflow-eudonetdirectory</developerConnection>
         <url>https://github.com/lutece-platform/lutece-wf-module-workflow-eudonetdirectory</url>
     </scm>
 	
