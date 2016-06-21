@@ -1,0 +1,133 @@
+<#assign idDirectory = -1>
+<#assign idConfig = -1>
+<#if taskConfig?exists>
+	<#assign idDirectory = taskConfig.idDirectory>	
+
+</#if>
+
+
+<p class="lead">#i18n{module.workflow.eudonetdirectory.task_eudonet_config.title}</p>
+
+
+
+<#if taskConfig?exists && taskConfig?has_content >
+
+<div class="form-group">
+	<label class="control-label col-xs-12 col-sm-12 col-md-3 col-lg-3" for="sessionKeyFamily">#i18n{module.workflow.eudonetdirectory.task_eudonet_config.label.sessionKeyFamily} </label>
+	<div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
+	<input type="text" class="form-control input-sm" name="session_key_family" id="session_key_family" tabindex="1" value="${taskConfig.sessionKeyFamily!}"/>
+		
+	</div>
+</div>
+<div class="form-group">
+	<label class="control-label col-xs-12 col-sm-12 col-md-3 col-lg-3" for="subscriberLogin">#i18n{module.workflow.eudonetdirectory.task_eudonet_config.label.subscriberLogin} </label>
+	<div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
+	<input type="text" class="form-control input-sm" name="subscriber_login" id="subscriber_login" tabindex="1" value="${taskConfig.subscriberLogin!}"/>
+		
+	</div>
+</div>
+<div class="form-group">
+	<label class="control-label col-xs-12 col-sm-12 col-md-3 col-lg-3" for="subscriberPassword">#i18n{module.workflow.eudonetdirectory.task_eudonet_config.label.subscriberPassword} </label>
+	<div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
+	<input type="text" class="form-control input-sm" name="subscriber_password" id="subscriber_password" tabindex="1" value="${taskConfig.subscriberPassword!}"/>
+		
+	</div>
+</div>
+<div class="form-group">
+	<label class="control-label col-xs-12 col-sm-12 col-md-3 col-lg-3" for="userLogin">#i18n{module.workflow.eudonetdirectory.task_eudonet_config.label.userLogin} </label>
+	<div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
+	<input type="text" class="form-control input-sm" name="user_login" id="user_login" tabindex="1" value="${taskConfig.userLogin!}"/>
+		
+	</div>
+</div>
+<div class="form-group">
+	<label class="control-label col-xs-12 col-sm-12 col-md-3 col-lg-3" for="userPassword">#i18n{module.workflow.eudonetdirectory.task_eudonet_config.label.userPassword} </label>
+	<div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
+	<input type="text" class="form-control input-sm" name="user_password" id="user_password" tabindex="1" value="${taskConfig.userPassword!}"/>
+		
+	</div>
+</div>
+<div class="form-group">
+	<label class="control-label col-xs-12 col-sm-12 col-md-3 col-lg-3" for="baseName">#i18n{module.workflow.eudonetdirectory.task_eudonet_config.label.baseName} </label>
+	<div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
+	<input type="text" class="form-control input-sm" name="base_name" id="base_name" tabindex="1" value="${taskConfig.baseName!}"/>
+		
+	</div>
+</div>
+
+<div class="form-group">
+	<label class="control-label col-xs-12 col-sm-12 col-md-3 col-lg-3" for="wsUrl">#i18n{module.workflow.eudonetdirectory.task_eudonet_config.label.WsUrl} </label>
+	<div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
+	<input type="text" class="form-control input-sm" name="wsdl_url" id="wsdl_url" tabindex="1" value="${taskConfig.wsUrl!}"/>
+		
+	</div>
+</div>
+
+<div class="form-group">
+	<label class="control-label col-xs-12 col-sm-12 col-md-3 col-lg-3" for="idDirectory">#i18n{module.workflow.eudonetdirectory.task_eudonet_config.label.directory} </label>
+	<div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
+		<@comboWithParams name="id_directory" default_value=idDirectory?string additionalParameters="class=\"input-xxlarge\"" items=list_directory />
+		<button type="submit" value="apply" name="apply" class="btn btn-primary btn-sm btn-flat">
+			<i class="glyphicon glyphicon-ok-circle"></i>&nbsp;#i18n{module.workflow.eudonetdirectory.task_eudonet_config.button.apply}
+		</button>
+	</div>
+</div>
+
+
+<div class="form-group">
+	<label class="control-label col-xs-12 col-sm-12 col-md-3 col-lg-3" for="idDirectory">#i18n{module.workflow.eudonetdirectory.task_eudonet_config.label.mapping} </label>
+	<div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
+		<@comboWithParams name="order_entry" default_value=idDirectory?string additionalParameters="class=\"input-xxlarge\"" items=list_entries />
+		<@comboWithParams name="eudonet_attribut" default_value=idDirectory?string additionalParameters="class=\"input-xxlarge\"" items=list_attribut />
+		<button type="submit" value="createEntry" name="apply" class="btn btn-primary btn-sm btn-flat">
+			<i class="glyphicon glyphicon-ok-circle"></i>&nbsp;#i18n{module.workflow.eudonetdirectory.task_eudonet_config.button.apply}
+		</button>
+	</div>
+</div>
+
+<#if entries?exists && entries?has_content >
+<@table>
+        <tr>
+            <input type="hidden" id="id" name="id"/>
+            <th>Attribut Eudonet</th>
+            <th>Ordre Entrie</th>
+            <th>Nom Entrie</th>
+            <th>#i18n{portal.util.labelActions}</th>
+        </tr>
+        <@tableHeadBodySeparator />
+            <#list entries as entrie >
+        <tr>
+            <input type="hidden" id="id" name="id"/>
+            <td>
+              ${entrie.eudonetAttribut!}
+            </td>
+            <td>
+              ${entrie.orderEntry!}
+            </td>
+            <td>
+              <#list list_entries as ent>
+
+			<#if ent.code?string == entrie.orderEntry?string  >
+				${ent.name!}
+
+			</#if>			
+		</#list>
+            </td>
+        <td>
+	 
+	   <button type="submit" value="deleteEntry" name="apply" class="btn btn-danger btn-small" onClick="updateIdEntry(${entrie.id});">
+			<i class="fa fa-trash"></i>&nbsp;#i18n{module.workflow.eudonetdirectory.task_eudonet_config.button.delete}
+	   </button>
+ 	 
+        </td>
+        </tr>
+        </#list>
+    </@table>
+</#if>
+</#if>
+ <input id="id_entry" type="hidden" name="id_entry" value="" ></input>
+<script>
+function updateIdEntry(idEntry){
+	$('#id_entry').val(idEntry);
+}
+</script>
