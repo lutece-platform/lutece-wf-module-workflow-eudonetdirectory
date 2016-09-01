@@ -100,7 +100,7 @@ public class TaskExportDemand extends SimpleTask
             _eudonetService.init( taskEudonetConfig );
             _eudonetService.exportDemand( resourceHistory.getIdResource(  ) );
         }
-        catch ( EudonetException e )
+        catch ( Exception e )
         {
             AppLogService.error( "Error export demand to eudonet process task", e );
             throw new RuntimeException( e );

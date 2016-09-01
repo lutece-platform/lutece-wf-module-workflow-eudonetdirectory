@@ -299,7 +299,7 @@ public class EudonetTaskComponent extends NoFormTaskComponent
                             }
 
                             ReferenceItem referenceItem = new ReferenceItem(  );
-                            referenceItem.setCode( String.valueOf( child.getPosition(  ) ) );
+                            referenceItem.setCode( String.valueOf( child.getIdEntry(  ) ) );
                             referenceItem.setName( child.getTitle(  ) );
                             referenceList.add( referenceItem );
                         }
@@ -308,7 +308,7 @@ public class EudonetTaskComponent extends NoFormTaskComponent
                 else
                 {
                     ReferenceItem referenceItem = new ReferenceItem(  );
-                    referenceItem.setCode( String.valueOf( entry.getPosition(  ) ) );
+                    referenceItem.setCode( String.valueOf( entry.getIdEntry( ) ) );
                     referenceItem.setName( entry.getTitle(  ) );
                     referenceList.add( referenceItem );
                 }
